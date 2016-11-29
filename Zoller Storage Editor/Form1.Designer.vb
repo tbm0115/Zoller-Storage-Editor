@@ -443,6 +443,7 @@ Partial Class Form1
     Me.mnuSettings.Name = "mnuSettings"
     Me.mnuSettings.Size = New System.Drawing.Size(181, 26)
     Me.mnuSettings.Text = "Settings"
+    Me.mnuSettings.Visible = False
     '
     'mnuHotkeys
     '
@@ -455,39 +456,39 @@ Partial Class Form1
     '
     Me.mnuF9.Name = "mnuF9"
     Me.mnuF9.ShortcutKeys = System.Windows.Forms.Keys.F9
-    Me.mnuF9.Size = New System.Drawing.Size(181, 26)
+    Me.mnuF9.Size = New System.Drawing.Size(170, 26)
     Me.mnuF9.Text = "Activate"
     '
     'mnuF10
     '
     Me.mnuF10.Name = "mnuF10"
     Me.mnuF10.ShortcutKeys = System.Windows.Forms.Keys.F10
-    Me.mnuF10.Size = New System.Drawing.Size(181, 26)
+    Me.mnuF10.Size = New System.Drawing.Size(170, 26)
     Me.mnuF10.Text = "Activate"
     '
     'mnuF11
     '
     Me.mnuF11.Name = "mnuF11"
     Me.mnuF11.ShortcutKeys = System.Windows.Forms.Keys.F11
-    Me.mnuF11.Size = New System.Drawing.Size(181, 26)
+    Me.mnuF11.Size = New System.Drawing.Size(170, 26)
     Me.mnuF11.Text = "Activate"
     '
     'mnuF12
     '
     Me.mnuF12.Name = "mnuF12"
     Me.mnuF12.ShortcutKeys = System.Windows.Forms.Keys.F12
-    Me.mnuF12.Size = New System.Drawing.Size(181, 26)
+    Me.mnuF12.Size = New System.Drawing.Size(170, 26)
     Me.mnuF12.Text = "Activate"
     '
     'ToolStripSeparator6
     '
     Me.ToolStripSeparator6.Name = "ToolStripSeparator6"
-    Me.ToolStripSeparator6.Size = New System.Drawing.Size(178, 6)
+    Me.ToolStripSeparator6.Size = New System.Drawing.Size(167, 6)
     '
     'mnuHotkeysSet
     '
     Me.mnuHotkeysSet.Name = "mnuHotkeysSet"
-    Me.mnuHotkeysSet.Size = New System.Drawing.Size(181, 26)
+    Me.mnuHotkeysSet.Size = New System.Drawing.Size(170, 26)
     Me.mnuHotkeysSet.Text = "Set..."
     '
     'StatusStrip1
