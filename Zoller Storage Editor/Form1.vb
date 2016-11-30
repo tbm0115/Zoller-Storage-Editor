@@ -6,7 +6,7 @@ Public Class Form1
   Private _data As Data
   Private _racks As Rack()
 
-  Private Sub mnuOpen_Click(sender As Object, e As EventArgs) Handles mnuOpen.Click
+  Public Sub mnuOpen_Click(sender As Object, e As EventArgs) Handles mnuOpen.Click
 
     '' Initialize Open File Dialog
     Dim opn As New OpenFileDialog
@@ -75,7 +75,7 @@ Public Class Form1
     trvStorage.ExpandAll()
     trvStorage.EndUpdate()
   End Sub
-  Private Sub mnuSave_Click(sender As Object, e As EventArgs) Handles mnuSave.Click
+  Public Sub mnuSave_Click(sender As Object, e As EventArgs) Handles mnuSave.Click
     If Not String.IsNullOrEmpty(statFile.Text) Then
       Dim rt As New XmlRootAttribute()
       rt.ElementName = "Data"
@@ -274,7 +274,7 @@ Public Class Form1
     End If
   End Sub
 
-  Private Sub mnuObjectRename_Click(sender As Object, e As EventArgs) Handles mnuRenameObject.Click
+  Public Sub mnuObjectRename_Click(sender As Object, e As EventArgs) Handles mnuRenameObject.Click
     If Not IsNothing(SelectedObject) And Not IsNothing(SelectedObject.GetType().GetProperty("Id")) Then
       SelectedObject.Id = InputBox("Enter new Id:", "Change Object Id", SelectedObject.Id)
       txtObjectId.Text = SelectedObject.Id
@@ -291,7 +291,7 @@ Public Class Form1
       End Select
     End If
   End Sub
-  Private Sub mnuAutoRename_Click(sender As Object, e As EventArgs) Handles mnuAutoRename.Click
+  Public Sub mnuAutoRename_Click(sender As Object, e As EventArgs) Handles mnuAutoRename.Click
     If Not IsNothing(SelectedObject) And Not IsNothing(SelectedObject.GetType().GetProperty("Id")) Then
       Select Case SelectedObject.GetType().Name
         Case "Rack"
@@ -348,42 +348,42 @@ Public Class Form1
     End If
   End Sub
 
-  Private Sub mnuEditWidth_Click(sender As Object, e As EventArgs) Handles mnuEditWidth.Click
+  Public Sub mnuEditWidth_Click(sender As Object, e As EventArgs) Handles mnuEditWidth.Click
     numWidth.Focus()
     numWidth.Select()
   End Sub
-  Private Sub mnuEditDepth_Click(sender As Object, e As EventArgs) Handles mnuEditDepth.Click
+  Public Sub mnuEditDepth_Click(sender As Object, e As EventArgs) Handles mnuEditDepth.Click
     If pnlDetails.Enabled Then
       numDepth.Focus()
       numDepth.Select()
     End If
   End Sub
-  Private Sub mnuEditHeight_Click(sender As Object, e As EventArgs) Handles mnuEditHeight.Click
+  Public Sub mnuEditHeight_Click(sender As Object, e As EventArgs) Handles mnuEditHeight.Click
     If pnlDetails.Enabled Then
       numHeight.Focus()
       numHeight.Select()
     End If
   End Sub
-  Private Sub mnuEditLocationX_Click(sender As Object, e As EventArgs) Handles mnuEditLocationX.Click
+  Public Sub mnuEditLocationX_Click(sender As Object, e As EventArgs) Handles mnuEditLocationX.Click
     If pnlDetails.Enabled Then
       numLocationX.Focus()
       numLocationX.Select()
     End If
   End Sub
-  Private Sub mnuEditLocationY_Click(sender As Object, e As EventArgs) Handles mnuEditLocationY.Click
+  Public Sub mnuEditLocationY_Click(sender As Object, e As EventArgs) Handles mnuEditLocationY.Click
     If pnlDetails.Enabled AndAlso grpLocation.Enabled Then
       numLocationY.Focus()
       numLocationY.Select()
     End If
   End Sub
-  Private Sub mnuEditLocationZ_Click(sender As Object, e As EventArgs) Handles mnuEditLocationZ.Click
+  Public Sub mnuEditLocationZ_Click(sender As Object, e As EventArgs) Handles mnuEditLocationZ.Click
     If pnlDetails.Enabled AndAlso grpLocation.Enabled Then
       numLocationZ.Focus()
       numLocationZ.Select()
     End If
   End Sub
 
-  Private Sub mnuRefresh_Click(sender As Object, e As EventArgs) Handles mnuRefresh.Click
+  Public Sub mnuRefresh_Click(sender As Object, e As EventArgs) Handles mnuRefresh.Click
     DrawOnly()
   End Sub
 
@@ -411,7 +411,7 @@ Public Class Form1
     _picMouseDown = False
   End Sub
 
-  Private Sub mnuAlignHL_Click(sender As Object, e As EventArgs) Handles mnuAlignHL.Click
+  Public Sub mnuAlignHL_Click(sender As Object, e As EventArgs) Handles mnuAlignHL.Click
     If Not IsNothing(trvStorage.SelectedNode) AndAlso Not IsNothing(trvStorage.SelectedNode.Tag) Then
       Select Case trvStorage.SelectedNode.Tag.GetType().Name
         'Case "Rack"
@@ -428,7 +428,7 @@ Public Class Form1
       statStatus.Text = "Select an object to align!"
     End If
   End Sub
-  Private Sub mnuAlignHC_Click(sender As Object, e As EventArgs) Handles mnuAlignHC.Click
+  Public Sub mnuAlignHC_Click(sender As Object, e As EventArgs) Handles mnuAlignHC.Click
     If Not IsNothing(trvStorage.SelectedNode) AndAlso Not IsNothing(trvStorage.SelectedNode.Tag) Then
       Select Case trvStorage.SelectedNode.Tag.GetType().Name
         'Case "Rack"
@@ -447,7 +447,7 @@ Public Class Form1
       statStatus.Text = "Select an object to align!"
     End If
   End Sub
-  Private Sub mnuAlignHR_Click(sender As Object, e As EventArgs) Handles mnuAlignHR.Click
+  Public Sub mnuAlignHR_Click(sender As Object, e As EventArgs) Handles mnuAlignHR.Click
     If Not IsNothing(trvStorage.SelectedNode) AndAlso Not IsNothing(trvStorage.SelectedNode.Tag) Then
       Select Case trvStorage.SelectedNode.Tag.GetType().Name
         'Case "Rack"
@@ -466,7 +466,7 @@ Public Class Form1
       statStatus.Text = "Select an object to align!"
     End If
   End Sub
-  Private Sub mnuAlignVT_Click(sender As Object, e As EventArgs) Handles mnuAlignVT.Click
+  Public Sub mnuAlignVT_Click(sender As Object, e As EventArgs) Handles mnuAlignVT.Click
     If Not IsNothing(trvStorage.SelectedNode) AndAlso Not IsNothing(trvStorage.SelectedNode.Tag) Then
       Select Case trvStorage.SelectedNode.Tag.GetType().Name
         'Case "Rack"
@@ -485,7 +485,7 @@ Public Class Form1
       statStatus.Text = "Select an object to align!"
     End If
   End Sub
-  Private Sub mnuAlignVM_Click(sender As Object, e As EventArgs) Handles mnuAlignVM.Click
+  Public Sub mnuAlignVM_Click(sender As Object, e As EventArgs) Handles mnuAlignVM.Click
     If Not IsNothing(trvStorage.SelectedNode) AndAlso Not IsNothing(trvStorage.SelectedNode.Tag) Then
       Select Case trvStorage.SelectedNode.Tag.GetType().Name
         'Case "Rack"
@@ -504,7 +504,7 @@ Public Class Form1
       statStatus.Text = "Select an object to align!"
     End If
   End Sub
-  Private Sub mnuAlignVB_Click(sender As Object, e As EventArgs) Handles mnuAlignVB.Click
+  Public Sub mnuAlignVB_Click(sender As Object, e As EventArgs) Handles mnuAlignVB.Click
     If Not IsNothing(trvStorage.SelectedNode) AndAlso Not IsNothing(trvStorage.SelectedNode.Tag) Then
       Select Case trvStorage.SelectedNode.Tag.GetType().Name
         'Case "Rack"
@@ -524,7 +524,7 @@ Public Class Form1
     End If
   End Sub
 
-  Private Sub mnuAdd_Click(sender As Object, e As EventArgs) Handles mnuAdd.Click
+  Public Sub mnuAdd_Click(sender As Object, e As EventArgs) Handles mnuAdd.Click
     If Not IsNothing(trvStorage.SelectedNode) AndAlso Not IsNothing(trvStorage.SelectedNode.Tag) Then
       Select Case trvStorage.SelectedNode.Tag.GetType().Name
         Case "Rack"
@@ -542,7 +542,7 @@ Public Class Form1
 
     End If
   End Sub
-  Private Sub mnuAddRange_Click(sender As Object, e As EventArgs) Handles mnuAddRange.Click
+  Public Sub mnuAddRange_Click(sender As Object, e As EventArgs) Handles mnuAddRange.Click
     If Not IsNothing(trvStorage.SelectedNode) AndAlso Not IsNothing(trvStorage.SelectedNode.Tag) Then
       Dim ar As New AddRange(trvStorage.SelectedNode.Tag)
       If ar.ShowDialog() = Windows.Forms.DialogResult.OK Then
@@ -584,7 +584,7 @@ Public Class Form1
     End If
   End Sub
 
-  Private Sub mnuOutRack_Click(sender As Object, e As EventArgs) Handles mnuOutRack.Click
+  Public Sub mnuOutRack_Click(sender As Object, e As EventArgs) Handles mnuOutRack.Click
     trvStorage.SelectedNode = trvStorage.Nodes(0)
     trvStorage.BeginUpdate()
     trvStorage.Nodes(0).Expand()
@@ -604,7 +604,7 @@ Public Class Form1
     trvStorage.EndUpdate()
     statStatus.Text = "Collapsed/Expanded Rack(s)"
   End Sub
-  Private Sub mnuOutShelf_Click(sender As Object, e As EventArgs) Handles mnuOutShelf.Click
+  Public Sub mnuOutShelf_Click(sender As Object, e As EventArgs) Handles mnuOutShelf.Click
     trvStorage.SelectedNode = trvStorage.Nodes(0)
     trvStorage.BeginUpdate()
     For Each rn As TreeNode In trvStorage.Nodes(0).Nodes
@@ -623,13 +623,13 @@ Public Class Form1
     trvStorage.EndUpdate()
     statStatus.Text = "Collapsed/Expanded Shelves"
   End Sub
-  Private Sub mnuOutCell_Click(sender As Object, e As EventArgs) Handles mnuOutCell.Click
+  Public Sub mnuOutCell_Click(sender As Object, e As EventArgs) Handles mnuOutCell.Click
     trvStorage.SelectedNode = trvStorage.Nodes(0)
     trvStorage.ExpandAll()
     statStatus.Text = "Collapsed/Expanded Cell(s)"
   End Sub
 
-  Private Sub mnuRemove_Click(sender As Object, e As EventArgs) Handles mnuRemove.Click
+  Public Sub mnuRemove_Click(sender As Object, e As EventArgs) Handles mnuRemove.Click
     If Not IsNothing(trvStorage.SelectedNode) AndAlso Not IsNothing(trvStorage.SelectedNode.Tag) Then
       If MessageBox.Show("Are your sure you wish to remove '" & trvStorage.SelectedNode.Text & "'?", "Verify", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = Windows.Forms.DialogResult.Yes Then
         Select Case trvStorage.SelectedNode.Tag.GetType().Name
@@ -694,7 +694,7 @@ Public Class Form1
     mnuFillHeight_Click(mnuFillHeight, Nothing)
   End Sub
 
-  Private Sub mnuNormalizeHor_Click(sender As Object, e As EventArgs) Handles mnuNormalizeHor.Click
+  Public Sub mnuNormalizeHor_Click(sender As Object, e As EventArgs) Handles mnuNormalizeHor.Click
     If Not IsNothing(trvStorage.SelectedNode) AndAlso Not IsNothing(trvStorage.SelectedNode.Tag) Then
       Select Case trvStorage.SelectedNode.Tag.GetType().Name
         Case "Rack"
@@ -733,7 +733,7 @@ Public Class Form1
     End If
     DrawOnly()
   End Sub
-  Private Sub mnuNormalizeVert_Click(sender As Object, e As EventArgs) Handles mnuNormalizeVert.Click
+  Public Sub mnuNormalizeVert_Click(sender As Object, e As EventArgs) Handles mnuNormalizeVert.Click
     If Not IsNothing(trvStorage.SelectedNode) AndAlso Not IsNothing(trvStorage.SelectedNode.Tag) Then
       Select Case trvStorage.SelectedNode.Tag.GetType().Name
         Case "Rack"
@@ -772,7 +772,7 @@ Public Class Form1
     End If
     DrawOnly()
   End Sub
-  Private Sub mnuNormalizeDepth_Click(sender As Object, e As EventArgs) Handles mnuNormalizeDepth.Click
+  Public Sub mnuNormalizeDepth_Click(sender As Object, e As EventArgs) Handles mnuNormalizeDepth.Click
     If Not IsNothing(trvStorage.SelectedNode) AndAlso Not IsNothing(trvStorage.SelectedNode.Tag) Then
       Select Case trvStorage.SelectedNode.Tag.GetType().Name
         Case "Rack"
@@ -812,7 +812,7 @@ Public Class Form1
     DrawOnly()
   End Sub
 
-  Private Sub mnuFillWidth_Click(sender As Object, e As EventArgs) Handles mnuFillWidth.Click
+  Public Sub mnuFillWidth_Click(sender As Object, e As EventArgs) Handles mnuFillWidth.Click
     If Not IsNothing(trvStorage.SelectedNode) AndAlso Not IsNothing(trvStorage.SelectedNode.Tag) Then
       If trvStorage.SelectedNode.Tag.GetType().Name = "Shelf" Or trvStorage.SelectedNode.Tag.GetType().Name = "Cell" Then
         Dim obj As Object = trvStorage.SelectedNode.Tag
@@ -824,7 +824,7 @@ Public Class Form1
       End If
     End If
   End Sub
-  Private Sub mnuFillDepth_Click(sender As Object, e As EventArgs) Handles mnuFillDepth.Click
+  Public Sub mnuFillDepth_Click(sender As Object, e As EventArgs) Handles mnuFillDepth.Click
     If Not IsNothing(trvStorage.SelectedNode) AndAlso Not IsNothing(trvStorage.SelectedNode.Tag) Then
       If trvStorage.SelectedNode.Tag.GetType().Name = "Shelf" Or trvStorage.SelectedNode.Tag.GetType().Name = "Cell" Then
         Dim obj As Object = trvStorage.SelectedNode.Tag
@@ -836,7 +836,7 @@ Public Class Form1
       End If
     End If
   End Sub
-  Private Sub mnuFillHeight_Click(sender As Object, e As EventArgs) Handles mnuFillHeight.Click
+  Public Sub mnuFillHeight_Click(sender As Object, e As EventArgs) Handles mnuFillHeight.Click
     If Not IsNothing(trvStorage.SelectedNode) AndAlso Not IsNothing(trvStorage.SelectedNode.Tag) Then
       If trvStorage.SelectedNode.Tag.GetType().Name = "Shelf" Or trvStorage.SelectedNode.Tag.GetType().Name = "Cell" Then
         Dim obj As Object = trvStorage.SelectedNode.Tag
@@ -857,25 +857,39 @@ Public Class Form1
     hk.ShowDialog()
   End Sub
 
-  Private Sub mnuF9_Click(sender As Object, e As EventArgs) Handles mnuF9.Click
+  Public Sub mnuF9_Click(sender As Object, e As EventArgs) Handles mnuF9.Click
     RunHotkey(My.Settings.F9Keys)
   End Sub
-  Private Sub mnuF10_Click(sender As Object, e As EventArgs) Handles mnuF10.Click
+  Public Sub mnuF10_Click(sender As Object, e As EventArgs) Handles mnuF10.Click
     RunHotkey(My.Settings.F10Keys)
   End Sub
-  Private Sub mnuF11_Click(sender As Object, e As EventArgs) Handles mnuF11.Click
+  Public Sub mnuF11_Click(sender As Object, e As EventArgs) Handles mnuF11.Click
     RunHotkey(My.Settings.F11Keys)
   End Sub
-  Private Sub mnuF12_Click(sender As Object, e As EventArgs) Handles mnuF12.Click
+  Public Sub mnuF12_Click(sender As Object, e As EventArgs) Handles mnuF12.Click
     RunHotkey(My.Settings.F12Keys)
   End Sub
   Private Sub RunHotkey(ByVal Arr As Specialized.StringCollection)
+    Dim str As String
+    Dim myXML As New XmlDocument
+    myXML.LoadXml(My.Resources.HotKeyMap)
     If Not IsNothing(Arr) AndAlso Arr.Count > 0 Then
       For i = 0 To Arr.Count - 1 Step 1
-        If Arr.Item(i) = "{APPHOLD}" Then
+        'SendKeys.Flush()
+        str = Arr(i).Replace(vbLf, Nothing).Trim()
+        'Debug.WriteLine("Sending: " & str & vbLf & _
+        '                vbTab & str.Replace(vbLf, Nothing) & vbLf & _
+        '                vbTab & str.Replace(vbCrLf, Nothing) & vbLf & _
+        '                vbTab & str.Replace(vbCr, Nothing))
+        If str = "{APPHOLD}" Then
           Application.DoEvents()
         Else
-          SendKeys.Send(Arr.Item(i))
+          If Not IsNothing(myXML.SelectSingleNode("//Item[@keystroke='" & str & "']")) Then
+            CallByName(Me, myXML.SelectSingleNode("//Item[@keystroke='" & str & "']").InnerText, CallType.Method, {Nothing, Nothing})
+          Else
+            Debug.WriteLine("Couldn't find '" & str & "' in XML")
+            SendKeys.SendWait(str)
+          End If
         End If
       Next
     End If
@@ -1980,10 +1994,28 @@ Public Class Rack
         _StorageRef.StorageId = e.NewValue
       Case "Width"
         _StorageRef.Width = e.NewValue
+        If Not IsNothing(StorageRef.StoragePlace) AndAlso
+          Not IsNothing(StorageRef.StoragePlace.StoragePlaceRef) AndAlso
+          Not IsNothing(StorageRef.StoragePlace.StoragePlaceRef.StoragePlaceList) AndAlso
+          Not IsNothing(StorageRef.StoragePlace.StoragePlaceRef.StoragePlaceList.StoragePlaceRef(0)) Then
+          StorageRef.StoragePlace.StoragePlaceRef.StoragePlaceList.StoragePlaceRef(0).LengthX = e.NewValue
+        End If
       Case "Depth"
         _StorageRef.Depth = e.NewValue
+        If Not IsNothing(StorageRef.StoragePlace) AndAlso
+          Not IsNothing(StorageRef.StoragePlace.StoragePlaceRef) AndAlso
+          Not IsNothing(StorageRef.StoragePlace.StoragePlaceRef.StoragePlaceList) AndAlso
+          Not IsNothing(StorageRef.StoragePlace.StoragePlaceRef.StoragePlaceList.StoragePlaceRef(0)) Then
+          StorageRef.StoragePlace.StoragePlaceRef.StoragePlaceList.StoragePlaceRef(0).LengthY = e.NewValue
+        End If
       Case "Height"
         _StorageRef.Height = e.NewValue
+        If Not IsNothing(StorageRef.StoragePlace) AndAlso
+          Not IsNothing(StorageRef.StoragePlace.StoragePlaceRef) AndAlso
+          Not IsNothing(StorageRef.StoragePlace.StoragePlaceRef.StoragePlaceList) AndAlso
+          Not IsNothing(StorageRef.StoragePlace.StoragePlaceRef.StoragePlaceList.StoragePlaceRef(0)) Then
+          StorageRef.StoragePlace.StoragePlaceRef.StoragePlaceList.StoragePlaceRef(0).LengthZ = e.NewValue
+        End If
       Case "Shelves"
         'Debug.WriteLine("Fuck that!")
     End Select

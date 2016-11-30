@@ -441,7 +441,7 @@ Partial Class Form1
     'mnuSettings
     '
     Me.mnuSettings.Name = "mnuSettings"
-    Me.mnuSettings.Size = New System.Drawing.Size(181, 26)
+    Me.mnuSettings.Size = New System.Drawing.Size(137, 26)
     Me.mnuSettings.Text = "Settings"
     Me.mnuSettings.Visible = False
     '
@@ -449,7 +449,7 @@ Partial Class Form1
     '
     Me.mnuHotkeys.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.mnuF9, Me.mnuF10, Me.mnuF11, Me.mnuF12, Me.ToolStripSeparator6, Me.mnuHotkeysSet})
     Me.mnuHotkeys.Name = "mnuHotkeys"
-    Me.mnuHotkeys.Size = New System.Drawing.Size(181, 26)
+    Me.mnuHotkeys.Size = New System.Drawing.Size(137, 26)
     Me.mnuHotkeys.Text = "Hotkeys"
     '
     'mnuF9
@@ -705,6 +705,7 @@ Partial Class Form1
     Me.btnFillHeight.Name = "btnFillHeight"
     Me.btnFillHeight.Size = New System.Drawing.Size(23, 17)
     Me.btnFillHeight.TabIndex = 8
+    Me.btnFillHeight.TabStop = False
     Me.btnFillHeight.UseVisualStyleBackColor = True
     '
     'btnFilleDepth
@@ -714,6 +715,7 @@ Partial Class Form1
     Me.btnFilleDepth.Name = "btnFilleDepth"
     Me.btnFilleDepth.Size = New System.Drawing.Size(23, 17)
     Me.btnFilleDepth.TabIndex = 7
+    Me.btnFilleDepth.TabStop = False
     Me.btnFilleDepth.UseVisualStyleBackColor = True
     '
     'btnFillWidth
@@ -723,6 +725,7 @@ Partial Class Form1
     Me.btnFillWidth.Name = "btnFillWidth"
     Me.btnFillWidth.Size = New System.Drawing.Size(23, 17)
     Me.btnFillWidth.TabIndex = 6
+    Me.btnFillWidth.TabStop = False
     Me.btnFillWidth.UseVisualStyleBackColor = True
     '
     'numHeight

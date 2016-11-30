@@ -44,6 +44,7 @@ Partial Class SetHotkeys
     Me.chkHoldShift = New System.Windows.Forms.CheckBox()
     Me.chkHoldAlt = New System.Windows.Forms.CheckBox()
     Me.chkHoldCtrl = New System.Windows.Forms.CheckBox()
+    Me.btnClearList = New System.Windows.Forms.Button()
     Me.TableLayoutPanel1.SuspendLayout()
     Me.tabHotkeys.SuspendLayout()
     Me.tabF9.SuspendLayout()
@@ -214,7 +215,7 @@ Partial Class SetHotkeys
     '
     'btnAdd
     '
-    Me.btnAdd.Location = New System.Drawing.Point(458, 248)
+    Me.btnAdd.Location = New System.Drawing.Point(479, 243)
     Me.btnAdd.Name = "btnAdd"
     Me.btnAdd.Size = New System.Drawing.Size(80, 25)
     Me.btnAdd.TabIndex = 6
@@ -223,7 +224,7 @@ Partial Class SetHotkeys
     '
     'btnAddApp
     '
-    Me.btnAddApp.Location = New System.Drawing.Point(403, 174)
+    Me.btnAddApp.Location = New System.Drawing.Point(323, 243)
     Me.btnAddApp.Name = "btnAddApp"
     Me.btnAddApp.Size = New System.Drawing.Size(156, 25)
     Me.btnAddApp.TabIndex = 7
@@ -242,7 +243,7 @@ Partial Class SetHotkeys
     'chkHoldShift
     '
     Me.chkHoldShift.AutoSize = True
-    Me.chkHoldShift.Location = New System.Drawing.Point(313, 205)
+    Me.chkHoldShift.Location = New System.Drawing.Point(323, 193)
     Me.chkHoldShift.Name = "chkHoldShift"
     Me.chkHoldShift.Size = New System.Drawing.Size(91, 21)
     Me.chkHoldShift.TabIndex = 9
@@ -252,7 +253,7 @@ Partial Class SetHotkeys
     'chkHoldAlt
     '
     Me.chkHoldAlt.AutoSize = True
-    Me.chkHoldAlt.Location = New System.Drawing.Point(313, 231)
+    Me.chkHoldAlt.Location = New System.Drawing.Point(323, 219)
     Me.chkHoldAlt.Name = "chkHoldAlt"
     Me.chkHoldAlt.Size = New System.Drawing.Size(79, 21)
     Me.chkHoldAlt.TabIndex = 10
@@ -262,12 +263,21 @@ Partial Class SetHotkeys
     'chkHoldCtrl
     '
     Me.chkHoldCtrl.AutoSize = True
-    Me.chkHoldCtrl.Location = New System.Drawing.Point(313, 178)
+    Me.chkHoldCtrl.Location = New System.Drawing.Point(323, 166)
     Me.chkHoldCtrl.Name = "chkHoldCtrl"
     Me.chkHoldCtrl.Size = New System.Drawing.Size(84, 21)
     Me.chkHoldCtrl.TabIndex = 11
     Me.chkHoldCtrl.Text = "Hold Ctrl"
     Me.chkHoldCtrl.UseVisualStyleBackColor = True
+    '
+    'btnClearList
+    '
+    Me.btnClearList.Location = New System.Drawing.Point(390, 289)
+    Me.btnClearList.Name = "btnClearList"
+    Me.btnClearList.Size = New System.Drawing.Size(77, 46)
+    Me.btnClearList.TabIndex = 12
+    Me.btnClearList.Text = "Clear List"
+    Me.btnClearList.UseVisualStyleBackColor = True
     '
     'SetHotkeys
     '
@@ -276,6 +286,7 @@ Partial Class SetHotkeys
     Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
     Me.CancelButton = Me.Cancel_Button
     Me.ClientSize = New System.Drawing.Size(580, 388)
+    Me.Controls.Add(Me.btnClearList)
     Me.Controls.Add(Me.chkHoldCtrl)
     Me.Controls.Add(Me.chkHoldAlt)
     Me.Controls.Add(Me.chkHoldShift)
@@ -326,5 +337,6 @@ Partial Class SetHotkeys
   Friend WithEvents chkHoldShift As System.Windows.Forms.CheckBox
   Friend WithEvents chkHoldAlt As System.Windows.Forms.CheckBox
   Friend WithEvents chkHoldCtrl As System.Windows.Forms.CheckBox
+  Friend WithEvents btnClearList As System.Windows.Forms.Button
 
 End Class

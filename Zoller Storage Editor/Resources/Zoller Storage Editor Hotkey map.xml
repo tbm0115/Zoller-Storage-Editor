@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Hotkeys>
+	<Item keystring="Ctrl+O" keystroke="^O">mnuOpen_Click</Item>
+	<Item keystring="Ctrl+S" keystroke="^S">mnuSave_Click</Item>
+	<Item keystring="Alt+W" keystroke="%W">mnuEditWidth_Click</Item>
+	<Item keystring="Alt+D" keystroke="%D">mnuEditDepth_Click</Item>
+	<Item keystring="Alt+H" keystroke="%H">mnuEditHeight_Click</Item>
+	<Item keystring="Alt+X" keystroke="%X">mnuEditLocationX_Click</Item>
+	<Item keystring="Alt+Y" keystroke="%Y">mnuEditLocationY_Click</Item>
+	<Item keystring="Alt+Z" keystroke="%Z">mnuEditLocationZ_Click</Item>
+	<Item keystring="F5" keystroke="{F5}">mnuRefresh_Click</Item>
+	<Item keystring="Alt+NumPad4" keystroke="%4">mnuAlignHL_Click</Item>
+	<Item keystring="Alt+NumPad5" keystroke="%5">mnuAlignHC_Click</Item>
+	<Item keystring="Alt+NumPad6" keystroke="%6">mnuAlignHR_Click</Item>
+	<Item keystring="Alt+NumPad8" keystroke="%8">mnuAlignVT_Click</Item>
+	<Item keystring="Alt+NumPad2" keystroke="%2">mnuAlignVB_Click</Item>
+	<Item keystring="Ins" keystroke="{INS}">mnuAdd_Click</Item>
+	<Item keystring="Shift+Ins" keystroke="+{INS}">mnuAddRange_Click</Item>
+	<Item keystring="Alt+B" keystroke="%B">mnuOutRack_Click</Item>
+	<Item keystring="Alt+N" keystroke="%N">mnuOutShelf_Click</Item>
+	<Item keystring="Alt+M" keystroke="%M">mnuOutCell_Click</Item>
+	<Item keystring="Del" keystroke="{DEL}">mnuRemove_Click</Item>
+	<Item keystring="Alt+Shift+W" keystroke="%+W">mnuFillWidth_Click</Item>
+	<Item keystring="Alt+Shift+D" keystroke="%+D">mnuFillDepth_Click</Item>
+	<Item keystring="Alt+Shift+H" keystroke="%+H">mnuFillHeight_Click</Item>
+	<Item keystring="F6" keystroke="{F6}">mnuNormalizeHor_Click</Item>
+	<Item keystring="F7" keystroke="{F7}">mnuNormalizeVert_Click</Item>
+	<Item keystring="F8" keystroke="{F8}">mnuNormalizeDepth_Click</Item>
+	<Item keystring="F9" keystroke="{F9}">mnuF9_Click</Item>
+	<Item keystring="F10" keystroke="{F10}">mnuF10_Click</Item>
+	<Item keystring="F11" keystroke="{F11}">mnuF11_Click</Item>
+	<Item keystring="F12" keystroke="{F12}">mnuF12_Click</Item>
+</Hotkeys>

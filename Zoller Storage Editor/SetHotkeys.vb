@@ -21,23 +21,38 @@ Public Class SetHotkeys
     If Not IsNothing(My.Settings.F9Keys) Then
       ReDim arr(My.Settings.F9Keys.Count)
       My.Settings.F9Keys.CopyTo(arr, 0)
+      CleanArray(arr)
       lstF9.Items.AddRange(arr)
     End If
     If Not IsNothing(My.Settings.F10Keys) Then
       ReDim arr(My.Settings.F10Keys.Count)
       My.Settings.F10Keys.CopyTo(arr, 0)
+      CleanArray(arr)
       lstF10.Items.AddRange(arr)
     End If
     If Not IsNothing(My.Settings.F11Keys) Then
       ReDim arr(My.Settings.F11Keys.Count)
       My.Settings.F11Keys.CopyTo(arr, 0)
+      CleanArray(arr)
       lstF11.Items.AddRange(arr)
     End If
     If Not IsNothing(My.Settings.F12Keys) Then
       ReDim arr(My.Settings.F12Keys.Count)
       My.Settings.F12Keys.CopyTo(arr, 0)
+      CleanArray(arr)
       lstF12.Items.AddRange(arr)
     End If
+  End Sub
+  Private Sub CleanArray(ByRef Arr As String())
+    Dim lst As New List(Of String)
+    For i = 0 To Arr.Length - 1 Step 1
+      If Arr(i) IsNot Nothing Then
+        lst.Add(Arr(i))
+      Else
+        Debug.WriteLine("Is Nothing")
+      End If
+    Next
+    Arr = lst.ToArray()
   End Sub
 
     Private Sub OK_Button_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles OK_Button.Click
@@ -83,13 +98,33 @@ Public Class SetHotkeys
     End If
   End Sub
   Private Function AddHold(ByVal HoldChar As Char, ByVal Input As String) As String
-    If Input.Contains("(") And (Input.Contains("^") Or Input.Contains("+") Or Input.Contains("%")) And Not Input.Contains(HoldChar) Then
-      Return Input.Replace("(", HoldChar & "(")
+    'If Input.Contains("{") And (Input.Contains("^") Or Input.Contains("+") Or Input.Contains("%")) And Not Input.Contains(HoldChar) Then
+    '  Input = Input.Replace("{", HoldChar & "{")
+    'ElseIf Input.Contains(HoldChar) Then
+    '  ' Do nothing
+    '  'return Input
+    'Else
+    '  Input = HoldChar & "{" & Input & "}"
+    'End If
+
+    'If Input.Contains("(") And (Input.Contains("^") Or Input.Contains("+") Or Input.Contains("%")) And Not Input.Contains(HoldChar) Then
+    '  Input = Input.Replace("(", HoldChar & "(")
+    'ElseIf Input.Contains(HoldChar) Then
+    '  ' Do nothing
+    '  'return Input
+    'Else
+    '  Input = HoldChar & "(" & Input & ")"
+    'End If
+
+    If (Input.Contains("^") Or Input.Contains("+") Or Input.Contains("%")) And Not Input.Contains(HoldChar) Then
+      Input = Input.Insert(1, HoldChar)
     ElseIf Input.Contains(HoldChar) Then
-      Return Input
+      ' Do nothing
+      'return Input
     Else
-      Return HoldChar & "(" & Input & ")"
+      Input = HoldChar & Input
     End If
+    Return Input
   End Function
   Private Sub btnAddApp_Click(sender As Object, e As EventArgs) Handles btnAddApp.Click
     If Not IsNothing(_lst) Then
@@ -112,35 +147,28 @@ Public Class SetHotkeys
       Debug.WriteLine("list is nothing")
     End If
   End Sub
+  Private Sub btnClearList_Click(sender As Object, e As EventArgs) Handles btnClearList.Click
+    If Not IsNothing(_lst) Then
+      _lst.Items.Clear()
+      UpdateHotkeys()
+    End If
+  End Sub
 
   Private Sub UpdateHotkeys()
-    Dim arr As String()
-
-    If IsNothing(My.Settings.F9Keys) Then My.Settings.F9Keys = New Specialized.StringCollection
-    ReDim arr(lstF9.Items.Count)
-    lstF9.Items.CopyTo(arr, 0)
-    My.Settings.F9Keys.Clear()
-    My.Settings.F9Keys.AddRange(arr)
-
-    If IsNothing(My.Settings.F10Keys) Then My.Settings.F10Keys = New Specialized.StringCollection
-    ReDim arr(lstF10.Items.Count)
-    lstF10.Items.CopyTo(arr, 0)
-    My.Settings.F10Keys.Clear()
-    My.Settings.F10Keys.AddRange(arr)
-
-    If IsNothing(My.Settings.F11Keys) Then My.Settings.F11Keys = New Specialized.StringCollection
-    ReDim arr(lstF11.Items.Count)
-    lstF11.Items.CopyTo(arr, 0)
-    My.Settings.F11Keys.Clear()
-    My.Settings.F11Keys.AddRange(arr)
-
-    If IsNothing(My.Settings.F12Keys) Then My.Settings.F12Keys = New Specialized.StringCollection
-    ReDim arr(lstF12.Items.Count)
-    lstF12.Items.CopyTo(arr, 0)
-    My.Settings.F12Keys.Clear()
-    My.Settings.F12Keys.AddRange(arr)
+    UpdateHotKey(lstF9, My.Settings.F9Keys)
+    UpdateHotKey(lstF10, My.Settings.F10Keys)
+    UpdateHotKey(lstF11, My.Settings.F11Keys)
+    UpdateHotKey(lstF12, My.Settings.F12Keys)
 
     My.Settings.Save()
   End Sub
-
+  Private Sub UpdateHotKey(ByVal lst As ListBox, ByVal sett As Specialized.StringCollection)
+    If sett Is Nothing Then sett = New Specialized.StringCollection
+    sett.Clear()
+    If lst.Items.Count > 0 Then
+      For Each it In lst.Items
+        sett.Add(it.ToString.Replace(vbLf, Nothing))
+      Next
+    End If
+  End Sub
 End Class

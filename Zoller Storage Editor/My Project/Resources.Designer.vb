@@ -61,7 +61,84 @@ Namespace My.Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to .
+        '''  Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+        '''&lt;Hotkeys&gt;
+        '''	&lt;Item keystring=&quot;Ctrl+O&quot; keystroke=&quot;^O&quot;&gt;mnuOpen_Click&lt;/Item&gt;
+        '''	&lt;Item keystring=&quot;Ctrl+S&quot; keystroke=&quot;^S&quot;&gt;mnuSave_Click&lt;/Item&gt;
+        '''	&lt;Item keystring=&quot;Alt+W&quot; keystroke=&quot;%W&quot;&gt;mnuEditWidth_Click&lt;/Item&gt;
+        '''	&lt;Item keystring=&quot;Alt+D&quot; keystroke=&quot;%D&quot;&gt;mnuEditDepth_Click&lt;/Item&gt;
+        '''	&lt;Item keystring=&quot;Alt+H&quot; keystroke=&quot;%H&quot;&gt;mnuEditHeight_Click&lt;/Item&gt;
+        '''	&lt;Item keystring=&quot;Alt+X&quot; keystroke=&quot;%X&quot;&gt;mnuEditLocationX_Click&lt;/Item&gt;
+        '''	&lt;Item keystring=&quot;Alt+Y&quot; keystroke=&quot;%Y&quot;&gt;mnuEditLocationY_Click [rest of string was truncated]&quot;;.
+        '''</summary>
+        Friend ReadOnly Property HotKeyMap() As String
+            Get
+                Return ResourceManager.GetString("HotKeyMap", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to F1={F1}
+        '''F2={F2}
+        '''F3={F3}
+        '''F4={F4}
+        '''F5={F5}
+        '''F6={F6}
+        '''F7={F7}
+        '''F8={F8}
+        '''F9={F9}
+        '''F10={F10}
+        '''F11={F11}
+        '''F12={F12}
+        '''Del={DEL}
+        '''Ins={INS}
+        '''Tab={TAB}
+        '''Enter={ENTER}
+        '''Esc={ESC}
+        '''Home={HOME}
+        '''End={END}
+        '''Page Up={PGUP}
+        '''Page Down={PGDN}
+        '''Down Arrow={DOWN}
+        '''Up Arrow={UP}
+        '''Left Arrow={LEFT}
+        '''Right Arrow={RIGHT}
+        '''A=A
+        '''B=B
+        '''C=C
+        '''D=D
+        '''E=E
+        '''F=F
+        '''G=G
+        '''H=H
+        '''I=I
+        '''J=J
+        '''K=K
+        '''L=L
+        '''M=M
+        '''N=N
+        '''O=O
+        '''P=P
+        '''Q=Q
+        '''R=R
+        '''S=S
+        '''T=T
+        '''U=U
+        '''V=V
+        '''W=W
+        '''X=X
+        '''Y=Y
+        '''Z=Z
+        '''0=0
+        '''1=1
+        '''2=2
+        '''3=3
+        '''4=4
+        '''5=5
+        '''6=6
+        '''7=7
+        '''8=8
+        '''9=9.
         '''</summary>
         Friend ReadOnly Property HotKeyValuePair() As String
             Get

@@ -26,7 +26,7 @@
     <ProductName>Storage Editor</ProductName>
     <PublisherName>Irongate Machine Inc</PublisherName>
     <SuiteName>Zoller Utilities</SuiteName>
-    <ApplicationRevision>9</ApplicationRevision>
+    <ApplicationRevision>12</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -166,7 +166,7 @@
       <LastGenOutput>Application.Designer.vb</LastGenOutput>
     </None>
     <None Include="My Project\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
+      <Generator>PublicSettingsSingleFileGenerator</Generator>
       <CustomToolNamespace>My</CustomToolNamespace>
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
@@ -196,6 +196,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\HotKeyValuePair.txt" />
+    <None Include="Resources\Zoller Storage Editor Hotkey map.xml" />
     <Content Include="Zoller.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
