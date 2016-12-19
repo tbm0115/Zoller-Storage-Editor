@@ -22,6 +22,7 @@ Partial Class Form1
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+    Me.components = New System.ComponentModel.Container()
     Dim TreeNode1 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Racks")
     Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Form1))
     Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
@@ -31,6 +32,8 @@ Partial Class Form1
     Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
     Me.mnuQuit = New System.Windows.Forms.ToolStripMenuItem()
     Me.EditToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+    Me.mnuCopyDataString = New System.Windows.Forms.ToolStripMenuItem()
+    Me.ToolStripSeparator7 = New System.Windows.Forms.ToolStripSeparator()
     Me.mnuRenameObject = New System.Windows.Forms.ToolStripMenuItem()
     Me.mnuEditWidth = New System.Windows.Forms.ToolStripMenuItem()
     Me.mnuEditDepth = New System.Windows.Forms.ToolStripMenuItem()
@@ -107,6 +110,7 @@ Partial Class Form1
     Me.lblObjectId = New System.Windows.Forms.Label()
     Me.cmbObjectType = New System.Windows.Forms.ComboBox()
     Me.lblObjectType = New System.Windows.Forms.Label()
+    Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
     Me.MenuStrip1.SuspendLayout()
     Me.StatusStrip1.SuspendLayout()
     CType(Me.spltWork, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -174,82 +178,94 @@ Partial Class Form1
     '
     'EditToolStripMenuItem
     '
-    Me.EditToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.mnuRenameObject, Me.mnuEditWidth, Me.mnuEditDepth, Me.mnuEditHeight, Me.mnuEditLocationX, Me.mnuEditLocationY, Me.mnuEditLocationZ, Me.ToolStripSeparator2, Me.mnuRefresh, Me.ToolStripSeparator4, Me.OutliningToolStripMenuItem})
+    Me.EditToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.mnuCopyDataString, Me.ToolStripSeparator7, Me.mnuRenameObject, Me.mnuEditWidth, Me.mnuEditDepth, Me.mnuEditHeight, Me.mnuEditLocationX, Me.mnuEditLocationY, Me.mnuEditLocationZ, Me.ToolStripSeparator2, Me.mnuRefresh, Me.ToolStripSeparator4, Me.OutliningToolStripMenuItem})
     Me.EditToolStripMenuItem.Name = "EditToolStripMenuItem"
     Me.EditToolStripMenuItem.Size = New System.Drawing.Size(47, 24)
     Me.EditToolStripMenuItem.Text = "Edit"
+    '
+    'mnuCopyDataString
+    '
+    Me.mnuCopyDataString.Name = "mnuCopyDataString"
+    Me.mnuCopyDataString.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.C), System.Windows.Forms.Keys)
+    Me.mnuCopyDataString.Size = New System.Drawing.Size(248, 26)
+    Me.mnuCopyDataString.Text = "Copy Data String"
+    '
+    'ToolStripSeparator7
+    '
+    Me.ToolStripSeparator7.Name = "ToolStripSeparator7"
+    Me.ToolStripSeparator7.Size = New System.Drawing.Size(245, 6)
     '
     'mnuRenameObject
     '
     Me.mnuRenameObject.Name = "mnuRenameObject"
     Me.mnuRenameObject.ShortcutKeys = System.Windows.Forms.Keys.F2
-    Me.mnuRenameObject.Size = New System.Drawing.Size(210, 26)
+    Me.mnuRenameObject.Size = New System.Drawing.Size(248, 26)
     Me.mnuRenameObject.Text = "Rename Object"
     '
     'mnuEditWidth
     '
     Me.mnuEditWidth.Name = "mnuEditWidth"
     Me.mnuEditWidth.ShortcutKeys = CType((System.Windows.Forms.Keys.Alt Or System.Windows.Forms.Keys.W), System.Windows.Forms.Keys)
-    Me.mnuEditWidth.Size = New System.Drawing.Size(210, 26)
+    Me.mnuEditWidth.Size = New System.Drawing.Size(248, 26)
     Me.mnuEditWidth.Text = "&Width"
     '
     'mnuEditDepth
     '
     Me.mnuEditDepth.Name = "mnuEditDepth"
     Me.mnuEditDepth.ShortcutKeys = CType((System.Windows.Forms.Keys.Alt Or System.Windows.Forms.Keys.D), System.Windows.Forms.Keys)
-    Me.mnuEditDepth.Size = New System.Drawing.Size(210, 26)
+    Me.mnuEditDepth.Size = New System.Drawing.Size(248, 26)
     Me.mnuEditDepth.Text = "&Depth"
     '
     'mnuEditHeight
     '
     Me.mnuEditHeight.Name = "mnuEditHeight"
     Me.mnuEditHeight.ShortcutKeys = CType((System.Windows.Forms.Keys.Alt Or System.Windows.Forms.Keys.H), System.Windows.Forms.Keys)
-    Me.mnuEditHeight.Size = New System.Drawing.Size(210, 26)
+    Me.mnuEditHeight.Size = New System.Drawing.Size(248, 26)
     Me.mnuEditHeight.Text = "&Height"
     '
     'mnuEditLocationX
     '
     Me.mnuEditLocationX.Name = "mnuEditLocationX"
     Me.mnuEditLocationX.ShortcutKeys = CType((System.Windows.Forms.Keys.Alt Or System.Windows.Forms.Keys.X), System.Windows.Forms.Keys)
-    Me.mnuEditLocationX.Size = New System.Drawing.Size(210, 26)
+    Me.mnuEditLocationX.Size = New System.Drawing.Size(248, 26)
     Me.mnuEditLocationX.Text = "Location &X"
     '
     'mnuEditLocationY
     '
     Me.mnuEditLocationY.Name = "mnuEditLocationY"
     Me.mnuEditLocationY.ShortcutKeys = CType((System.Windows.Forms.Keys.Alt Or System.Windows.Forms.Keys.Y), System.Windows.Forms.Keys)
-    Me.mnuEditLocationY.Size = New System.Drawing.Size(210, 26)
+    Me.mnuEditLocationY.Size = New System.Drawing.Size(248, 26)
     Me.mnuEditLocationY.Text = "Location &Y"
     '
     'mnuEditLocationZ
     '
     Me.mnuEditLocationZ.Name = "mnuEditLocationZ"
     Me.mnuEditLocationZ.ShortcutKeys = CType((System.Windows.Forms.Keys.Alt Or System.Windows.Forms.Keys.Z), System.Windows.Forms.Keys)
-    Me.mnuEditLocationZ.Size = New System.Drawing.Size(210, 26)
+    Me.mnuEditLocationZ.Size = New System.Drawing.Size(248, 26)
     Me.mnuEditLocationZ.Text = "Location &Z"
     '
     'ToolStripSeparator2
     '
     Me.ToolStripSeparator2.Name = "ToolStripSeparator2"
-    Me.ToolStripSeparator2.Size = New System.Drawing.Size(207, 6)
+    Me.ToolStripSeparator2.Size = New System.Drawing.Size(245, 6)
     '
     'mnuRefresh
     '
     Me.mnuRefresh.Name = "mnuRefresh"
     Me.mnuRefresh.ShortcutKeys = System.Windows.Forms.Keys.F5
-    Me.mnuRefresh.Size = New System.Drawing.Size(210, 26)
+    Me.mnuRefresh.Size = New System.Drawing.Size(248, 26)
     Me.mnuRefresh.Text = "Refresh"
     '
     'ToolStripSeparator4
     '
     Me.ToolStripSeparator4.Name = "ToolStripSeparator4"
-    Me.ToolStripSeparator4.Size = New System.Drawing.Size(207, 6)
+    Me.ToolStripSeparator4.Size = New System.Drawing.Size(245, 6)
     '
     'OutliningToolStripMenuItem
     '
     Me.OutliningToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.mnuOutRack, Me.mnuOutShelf, Me.mnuOutCell})
     Me.OutliningToolStripMenuItem.Name = "OutliningToolStripMenuItem"
-    Me.OutliningToolStripMenuItem.Size = New System.Drawing.Size(210, 26)
+    Me.OutliningToolStripMenuItem.Size = New System.Drawing.Size(248, 26)
     Me.OutliningToolStripMenuItem.Text = "Outlining"
     '
     'mnuOutRack
@@ -706,6 +722,7 @@ Partial Class Form1
     Me.btnFillHeight.Size = New System.Drawing.Size(23, 17)
     Me.btnFillHeight.TabIndex = 8
     Me.btnFillHeight.TabStop = False
+    Me.ToolTip1.SetToolTip(Me.btnFillHeight, "Fill Height to Parent Height")
     Me.btnFillHeight.UseVisualStyleBackColor = True
     '
     'btnFilleDepth
@@ -716,6 +733,7 @@ Partial Class Form1
     Me.btnFilleDepth.Size = New System.Drawing.Size(23, 17)
     Me.btnFilleDepth.TabIndex = 7
     Me.btnFilleDepth.TabStop = False
+    Me.ToolTip1.SetToolTip(Me.btnFilleDepth, "Fill Depth to Parent Depth")
     Me.btnFilleDepth.UseVisualStyleBackColor = True
     '
     'btnFillWidth
@@ -726,6 +744,7 @@ Partial Class Form1
     Me.btnFillWidth.Size = New System.Drawing.Size(23, 17)
     Me.btnFillWidth.TabIndex = 6
     Me.btnFillWidth.TabStop = False
+    Me.ToolTip1.SetToolTip(Me.btnFillWidth, "Fill Width to Parent Width")
     Me.btnFillWidth.UseVisualStyleBackColor = True
     '
     'numHeight
@@ -941,5 +960,8 @@ Partial Class Form1
   Friend WithEvents mnuF12 As System.Windows.Forms.ToolStripMenuItem
   Friend WithEvents ToolStripSeparator6 As System.Windows.Forms.ToolStripSeparator
   Friend WithEvents mnuHotkeysSet As System.Windows.Forms.ToolStripMenuItem
+  Friend WithEvents mnuCopyDataString As System.Windows.Forms.ToolStripMenuItem
+  Friend WithEvents ToolStripSeparator7 As System.Windows.Forms.ToolStripSeparator
+  Friend WithEvents ToolTip1 As System.Windows.Forms.ToolTip
 
 End Class

@@ -30,4 +30,5 @@
 	<Item keystring="F10" keystroke="{F10}">mnuF10_Click</Item>
 	<Item keystring="F11" keystroke="{F11}">mnuF11_Click</Item>
 	<Item keystring="F12" keystroke="{F12}">mnuF12_Click</Item>
+  <Item keystring="Ctrl+C" keystroke="^C">mnuCopyDataString_Click</Item>
 </Hotkeys>

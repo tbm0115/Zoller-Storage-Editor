@@ -43,7 +43,7 @@ Public Class Form1
     End Try
     LoadTree()
   End Sub
-  Private Sub LoadTree()
+  Private Sub LoadTree(Optional ByVal nodMap As String = "")
     trvStorage.BeginUpdate()
     trvStorage.Nodes.Clear()
     Application.DoEvents()
@@ -72,9 +72,36 @@ Public Class Form1
         trvStorage.Nodes(0).Nodes.Add(rn)
       Next
     End If
-    trvStorage.ExpandAll()
     trvStorage.EndUpdate()
+    If Not String.IsNullOrEmpty(nodMap) Then
+      Dim selNod As TreeNode = GetNodeByMap(nodMap)
+      If Not IsNothing(selNod) Then
+        trvStorage.SelectedNode = selNod
+        trvStorage.SelectedNode.ExpandAll()
+      Else
+        Debug.WriteLine("Couldn't find node for '" & nodMap & "'")
+      End If
+    Else
+      trvStorage.ExpandAll()
+    End If
   End Sub
+  Private Function GetNodeByMap(ByVal nodMap As String, Optional ByVal nod As TreeNode = Nothing) As TreeNode
+    Dim rtn As TreeNode = Nothing
+    If nod Is Nothing Then nod = trvStorage.Nodes(0)
+    Debug.WriteLine(nod.GetNodeMap() & "=" & nodMap & " is " & (nod.GetNodeMap() = nodMap).ToString)
+    If nod.GetNodeMap() = nodMap Then
+      rtn = nod
+
+    ElseIf nod.Nodes.Count > 0 Then
+      For i = 0 To nod.Nodes.Count - 1 Step 1
+        rtn = GetNodeByMap(nodMap, nod.Nodes(i))
+        If rtn IsNot Nothing Then
+          Exit For
+        End If
+      Next
+    End If
+    Return rtn
+  End Function
   Public Sub mnuSave_Click(sender As Object, e As EventArgs) Handles mnuSave.Click
     If Not String.IsNullOrEmpty(statFile.Text) Then
       Dim rt As New XmlRootAttribute()
@@ -525,24 +552,35 @@ Public Class Form1
   End Sub
 
   Public Sub mnuAdd_Click(sender As Object, e As EventArgs) Handles mnuAdd.Click
+    Dim parNod As String
+    If trvStorage.SelectedNode IsNot Nothing Then
+      parNod = trvStorage.SelectedNode.GetNodeMap()
+    End If
     If Not IsNothing(trvStorage.SelectedNode) AndAlso Not IsNothing(trvStorage.SelectedNode.Tag) Then
       Select Case trvStorage.SelectedNode.Tag.GetType().Name
         Case "Rack"
           Dim rck As Rack = trvStorage.SelectedNode.Tag
           rck.Add()
         Case "Shelf"
-
+          Dim shlf As Rack.Shelf = trvStorage.SelectedNode.Tag
+          shlf.Add()
           'Case "Cell"
         Case Else
           statStatus.Text = "Only works on Rack/Cabinet and Shelf/Drawer"
       End Select
-      Object_Selected(trvStorage.SelectedNode.Tag)
+      Dim selNode As TreeNode = trvStorage.SelectedNode
+      LoadTree(parNod)
+      trvStorage.SelectedNode = selNode
     ElseIf Not IsNothing(trvStorage.SelectedNode) Then
       '' Add new rack
 
     End If
   End Sub
   Public Sub mnuAddRange_Click(sender As Object, e As EventArgs) Handles mnuAddRange.Click
+    Dim parNod As String
+    If trvStorage.SelectedNode IsNot Nothing Then
+      parNod = trvStorage.SelectedNode.GetNodeMap()
+    End If
     If Not IsNothing(trvStorage.SelectedNode) AndAlso Not IsNothing(trvStorage.SelectedNode.Tag) Then
       Dim ar As New AddRange(trvStorage.SelectedNode.Tag)
       If ar.ShowDialog() = Windows.Forms.DialogResult.OK Then
@@ -564,7 +602,7 @@ Public Class Form1
               cnt += 1
             Next
             If cnt > 0 Then
-              LoadTree()
+              LoadTree(parNod)
               statStatus.Text = "Done! Added " & (cnt - tot).ToString & " objects."
             Else
               statStatus.Text = "Storage generation turned up empty!"
@@ -631,6 +669,10 @@ Public Class Form1
 
   Public Sub mnuRemove_Click(sender As Object, e As EventArgs) Handles mnuRemove.Click
     If Not IsNothing(trvStorage.SelectedNode) AndAlso Not IsNothing(trvStorage.SelectedNode.Tag) Then
+      Dim parNod As String
+      If trvStorage.SelectedNode.Parent IsNot Nothing Then
+        parNod = trvStorage.SelectedNode.Parent.GetNodeMap()
+      End If
       If MessageBox.Show("Are your sure you wish to remove '" & trvStorage.SelectedNode.Text & "'?", "Verify", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = Windows.Forms.DialogResult.Yes Then
         Select Case trvStorage.SelectedNode.Tag.GetType().Name
           Case "Rack"
@@ -675,7 +717,7 @@ Public Class Form1
             Dim cell As Rack.Shelf.Cell = trvStorage.SelectedNode.Tag
             cell.Parent.Remove(cell)
         End Select
-        LoadTree()
+        LoadTree(parNod)
       Else
         statStatus.Text = "Cancelled removal"
       End If
@@ -875,12 +917,7 @@ Public Class Form1
     myXML.LoadXml(My.Resources.HotKeyMap)
     If Not IsNothing(Arr) AndAlso Arr.Count > 0 Then
       For i = 0 To Arr.Count - 1 Step 1
-        'SendKeys.Flush()
         str = Arr(i).Replace(vbLf, Nothing).Trim()
-        'Debug.WriteLine("Sending: " & str & vbLf & _
-        '                vbTab & str.Replace(vbLf, Nothing) & vbLf & _
-        '                vbTab & str.Replace(vbCrLf, Nothing) & vbLf & _
-        '                vbTab & str.Replace(vbCr, Nothing))
         If str = "{APPHOLD}" Then
           Application.DoEvents()
         Else
@@ -895,6 +932,15 @@ Public Class Form1
     End If
   End Sub
 
+  Public Sub mnuCopyDataString_Click(sender As Object, e As EventArgs) Handles mnuCopyDataString.Click
+    If Not IsNothing(trvStorage.SelectedNode) AndAlso Not IsNothing(trvStorage.SelectedNode.Tag) Then
+      Dim str As String = trvStorage.SelectedNode.Tag.ToString()
+      My.Computer.Clipboard.SetText(str)
+      statStatus.Text = "Set object string to clipboard!"
+    Else
+      statStatus.Text = "You must select an object to perform this action!"
+    End If
+  End Sub
 End Class
 Public Module StorageFunctions
   Public _Draw As New DrawSettings With {.Pen = New Pen(Brushes.Black, 1.5F)}
@@ -1196,6 +1242,14 @@ Public Module StorageFunctions
       Return True
     End If
   End Function
+
+  <Extension()> Public Function GetNodeMap(ByVal nod As TreeNode) As String
+    If Not IsNothing(nod.Parent) Then
+      Return nod.Parent.GetNodeMap() & "/" & nod.Parent.Nodes.IndexOf(nod).ToString
+    Else
+      Return "0"
+    End If
+  End Function
 End Module
 <Serializable(), XmlRoot("Data")> _
 Public Class Data
@@ -1476,6 +1530,10 @@ Public Class Rack
     End Get
   End Property
 
+  Public Overrides Function ToString() As String
+    Return "Rack/Cabinet " & _Id.ToString & ":{W=" & _Width.ToString & ", D=" & _Depth.ToString & ", H=" & _Height.ToString & ", ShelfCount=" & IIf(IsNothing(_Shelves), "0", _Shelves.Length.ToString) & "}"
+  End Function
+
   Public Class Shelf
     Private Event PropertyChanged(ByVal sender As Object, ByVal e As PropertyChangedEventArgs)
 
@@ -1587,6 +1645,10 @@ Public Class Rack
     End Property
     Public Property Parent As Rack
 
+    Public Overrides Function ToString() As String
+      Return "Shelf/Drawer " & _Id.ToString & ":{W=" & _Width.ToString & ", D=" & _Depth.ToString & ", H=" & _Height.ToString & ", X=" & _LocationX.ToString & ", Y=" & _LocationY.ToString & ", Z=" & _LocationZ.ToString & ", CellCount=" & IIf(IsNothing(_Cells), "0", _Cells.Length.ToString) & "}"
+    End Function
+
     Public Class Cell
       Private Event PropertyChanged(ByVal sender As Object, ByVal e As PropertyChangedEventArgs)
 
@@ -1663,6 +1725,10 @@ Public Class Rack
         End Get
       End Property
       Public Property Parent As Shelf
+
+      Public Overrides Function ToString() As String
+        Return "Cell " & _Id.ToString & ":{W=" & _Width.ToString & ", D=" & _Depth.ToString & ", H=" & _Height.ToString & ", X=" & _LocationX.ToString & ", Y=" & _LocationY.ToString & ", Z=" & _LocationZ.ToString & "}"
+      End Function
 
       Public Sub New(ByVal Ref As StoragePlaceRef)
         _StorageRef = Ref
@@ -1784,11 +1850,15 @@ Public Class Rack
         Next
         If storIndex >= 0 Then
           lst1.RemoveAt(storIndex)
+          Me.StorageRef.StoragePlaceList.StoragePlaceRef = lst1.ToArray()
           Dim cells As New List(Of Cell)
           cells.AddRange(_Cells)
           cells.RemoveAt(Index)
           _Cells = cells.ToArray()
           blnSuccess = True
+        End If
+        If Not blnSuccess Then
+          Debug.WriteLine("Not successfully removed because store index was not found")
         End If
       Else
         Throw New NullReferenceException()
@@ -1850,6 +1920,12 @@ Public Class Rack
   Public Sub Add(Optional ByVal loc As StorageLocation = Nothing, Optional ByVal sz As StorageSize = Nothing)
     Dim mainPlaceRef As StoragePlaceRef
     Dim subRef1 As StoragePlaceRef
+    If IsNothing(StorageRef.StoragePlace) Then
+      StorageRef.StoragePlace = New StoragePlace
+    End If
+    If IsNothing(StorageRef.StoragePlace.StoragePlaceRef) Then
+      StorageRef.StoragePlace.StoragePlaceRef = New StoragePlaceRef
+    End If
     If IsNothing(StorageRef.StoragePlace.StoragePlaceRef.StoragePlaceList) Then
       mainPlaceRef = New StoragePlaceRef
       mainPlaceRef.StoragePlaceListId = 0
@@ -1957,6 +2033,7 @@ Public Class Rack
       Next
       If storIndex >= 0 Then
         lst1.RemoveAt(storIndex)
+        subRef1.StoragePlaceList.StoragePlaceRef = lst1.ToArray()
         Dim shlfs As New List(Of Shelf)
         shlfs.AddRange(_Shelves)
         shlfs.RemoveAt(Index)
